@@ -1,9 +1,9 @@
-const UserModel = require("./models/user");
+import UserData from "../mongodb/models/user.js";
 
 // Get all users
 const getAllUsers = async (req, res) => {
   try {
-    const users = await UserModel.find();
+    const users = await UserData.find();
     res.json(users);
   } catch (err) {
     console.error("Error getting users:", err.message);
@@ -15,7 +15,7 @@ const getAllUsers = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await UserModel.findById(id);
+    const user = await UserData.findById(id);
     if (!user) {
       res.status(404).send("User not found");
     } else {
@@ -27,11 +27,13 @@ const getUserById = async (req, res) => {
   }
 };
 
+const data = "";
 // Add user
 const addUser = async (req, res) => {
   try {
     const { ID, firstName, lastName, companyName, email, password } = req.body;
-    const user = new UserModel({
+    console.req.body;
+    const user = new UserData({
       ID,
       firstName,
       lastName,
@@ -39,9 +41,12 @@ const addUser = async (req, res) => {
       email,
       password,
     });
+
+    data = user;
     const savedUser = await user.save();
     res.json(savedUser);
   } catch (err) {
+    console.log(" here data : ", data);
     console.error("Error adding user:", err.message);
     res.status(500).send("Internal server error");
   }
@@ -59,7 +64,7 @@ const updateUserById = async (req, res) => {
     if (companyName) update.companyName = companyName;
     if (email) update.email = email;
     if (password) update.password = password;
-    const updatedUser = await UserModel.findByIdAndUpdate(id, update, {
+    const updatedUser = await UserData.findByIdAndUpdate(id, update, {
       new: true,
     });
     if (!updatedUser) {
@@ -77,7 +82,7 @@ const updateUserById = async (req, res) => {
 const deleteUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedUser = await UserModel.findByIdAndDelete(id);
+    const deletedUser = await UserData.findByIdAndDelete(id);
     if (!deletedUser) {
       res.status(404).send("User not found");
     } else {
@@ -89,10 +94,4 @@ const deleteUserById = async (req, res) => {
   }
 };
 
-module.exports = {
-  getAllUsers,
-  getUserById,
-  addUser,
-  updateUserById,
-  deleteUserById,
-};
+export { getAllUsers, getUserById, addUser, updateUserById, deleteUserById };

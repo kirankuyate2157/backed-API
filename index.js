@@ -3,16 +3,18 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 
 import connectDB from "./mongodb/connect.js";
+import userRouter from "./routes/user.routes.js";
 
 dotenv.config(); // accessing  .env data
 
 const app = express();
 app.use(cors());
 
-app.get("/", (req, res) => {
+app.get("/api/v1/users", (req, res) => {
   res.send({ message: "Hello World ! my name is kiran.dev" }); //route response on root
 });
 //using middleware  "api/v1/users"
+app.use("/api/v1/users", userRouter);
 
 //server port and connection
 const StartServer = async () => {
