@@ -1,4 +1,5 @@
 import express from "express";
+import bodyParser from "body-parser";
 import * as dotenv from "dotenv";
 import cors from "cors";
 
@@ -9,8 +10,11 @@ dotenv.config(); // accessing  .env data
 
 const app = express();
 app.use(cors());
+// middleware to parse the request body
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-app.get("/api/v1/users", (req, res) => {
+app.get("/api/v1", (req, res) => {
   res.send({ message: "Hello World ! my name is kiran.dev" }); //route response on root
 });
 //using middleware  "api/v1/users"

@@ -32,7 +32,12 @@ const data = "";
 const addUser = async (req, res) => {
   try {
     const { ID, firstName, lastName, companyName, email, password } = req.body;
-    console.req.body;
+
+    if (!ID || !firstName || !lastName || !email || !password) {
+      res.status(400).send("Missing required fields");
+      return;
+    }
+
     const user = new UserData({
       ID,
       firstName,
@@ -42,11 +47,9 @@ const addUser = async (req, res) => {
       password,
     });
 
-    data = user;
     const savedUser = await user.save();
     res.json(savedUser);
   } catch (err) {
-    console.log(" here data : ", data);
     console.error("Error adding user:", err.message);
     res.status(500).send("Internal server error");
   }
