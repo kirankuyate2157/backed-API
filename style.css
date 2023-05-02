@@ -1,0 +1,87 @@
+.table-wrapper {
+  position: relative;
+  padding-top: 40px;
+}
+
+.search-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+th,
+td {
+  padding: 5px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th:first-child,
+td:first-child {
+  width: 10%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 20%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 20%;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  width: 20%;
+}
+
+tr input,
+td {
+  border-radius: 5px;
+  background: #b5bba0;
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+  width: 20%;
+}
+
+th:last-child,
+td:last-child {
+  width: 10%;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #4caf50;
+  color: #fff;
+  margin-right: 5px;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: #fff;
+}
