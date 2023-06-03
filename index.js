@@ -23,7 +23,7 @@ app.use("/api/v1/users", userRouter);
 //server port and connection
 const StartServer = async () => {
   try {
-    //connect to data base via URL
+    //connect to data base via URL user Middleware while requesting
     connectDB(process.env.MONGODB_URL);
     app.listen(8080, () =>
       console.log("server started 🚀.. on port http://localhost:8080")
